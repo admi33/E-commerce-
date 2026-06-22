@@ -1413,7 +1413,7 @@ async function handleRegister() {
     const { data, error } = await sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } });
     if (error) throw error;
 
-    const user = data.user || data.session?.user;
+    const role = (phone === '0000000000' || email === 'admin@shopgh.com') ? 'admin' : 'customer';
     if (!user) throw new Error('Please turn off email confirmation in Supabase Auth settings.');
 
     // Phone 0000000000 is always admin
