@@ -1,0 +1,19 @@
+{
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" }
+    }
+  ],
+  "headers": [
+    {
+      "source": "/public/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ],
+  "functions": {
+    "api/webhook.js": { "memory": 256, "maxDuration": 10 }
+  }
+}
